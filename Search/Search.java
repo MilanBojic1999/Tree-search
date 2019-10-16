@@ -1,4 +1,10 @@
+package Model.Search;
+
+import Model.Edge;
+import Model.Graph;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -25,9 +31,10 @@ public abstract class Search {
 
     protected List<Edge> edgeTo(Graph g,int[] edg,int s,int e){
         List<Edge> stack=new Stack<>();
-        for(int i=e;edg[i]!=s;i=edg[i])
+        for(int i=e;i!=s;i=edg[i])
             stack.add(g.getEdge(i,edg[i]));
 
+        Collections.reverse(stack);
         return stack;
     }
 

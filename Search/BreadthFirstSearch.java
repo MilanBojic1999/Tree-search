@@ -1,11 +1,14 @@
+package Model.Search;
+
+import Model.Edge;
+import Model.Graph;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 public class BreadthFirstSearch extends Search {
-    private boolean[] marked;
-    private int[] edgeTo;
-    private Graph graph;
+
     public static final BreadthFirstSearch INSTANCE=new BreadthFirstSearch();
 
     public BreadthFirstSearch() {
@@ -27,7 +30,7 @@ public class BreadthFirstSearch extends Search {
             _marked[v]=true;
             for(Edge edge:graph.adj(v)){
                 int w=edge.other(v);
-                if(!_marked[v]){
+                if(!_marked[w]){
                     _edgeTo[w]=v;
                     queue.add(w);
                 }

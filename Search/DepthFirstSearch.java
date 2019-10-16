@@ -1,3 +1,8 @@
+package Model.Search;
+
+import Model.Edge;
+import Model.Graph;
+
 import java.util.List;
 import java.util.Stack;
 
@@ -5,7 +10,7 @@ public class DepthFirstSearch extends Search{
 
     public static final DepthFirstSearch INSTANCE=new DepthFirstSearch();
 
-    public DepthFirstSearch(Graph graph,int s) {
+    public DepthFirstSearch(Graph graph, int s) {
         super(graph,s);
     }
 
@@ -14,7 +19,7 @@ public class DepthFirstSearch extends Search{
     }
 
     @Override
-    public List<Edge> search(Graph g,int s, int e) {
+    public List<Edge> search(Graph g, int s, int e) {
         boolean[] _marked=new boolean[graph.V()];
         int[] _edgeTo=new int[graph.V()];
         Stack<Integer> nodes=new Stack<>();

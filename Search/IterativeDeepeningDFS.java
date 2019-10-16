@@ -1,8 +1,18 @@
+package Model.Search;
+
+import Model.Edge;
+import Model.Graph;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 public class IterativeDeepeningDFS extends Search {
+
+
+    public IterativeDeepeningDFS(Graph graph, int s) {
+        super(graph, s);
+    }
 
     @Override
     public List<Edge> search(Graph g, int s, int e) {
@@ -37,13 +47,14 @@ public class IterativeDeepeningDFS extends Search {
             int w=edge.other(v);
             if(!marked[w]){
                 edgeTo[w]=v;
+                System.out.println(w);
                 if(w==e)
                     return edgeTo(g,edgeTo,s,e);
                 else
                     return _rDfs(g,queue,marked,edgeTo,w,s,e,i+1);
             }
         }
-
+        System.out.println("opa");
         return null;
     }
 
