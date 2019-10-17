@@ -39,7 +39,7 @@ public class Edge implements Comparable<Edge>{
     public int hashCode() {
         final int prime=53;
         int hash=(v*10+w)*prime;
-        hash=hash+(int)(weight*prime);
+
         return hash;
     }
 

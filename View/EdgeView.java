@@ -1,10 +1,7 @@
-import Model.Edge;
-import Model.Graph;
-import javafx.scene.Node;
+package View;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
-import java.util.List;
 
 public class EdgeView {
 
@@ -29,13 +26,26 @@ public class EdgeView {
         path=false;
     }
 
-    public void setNodes(List<NodeView> list){
+    public void setNodes(NodeView[] list){
         for(NodeView node:list){
             if(node.getNum()==node1num)
                 node1=node;
             else if(node.getNum()==node2num)
                 node2=node;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime=53;
+        int hash=(node1num*10+node2num)*prime;
+
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     public NodeView getNode1() {

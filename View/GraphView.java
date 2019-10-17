@@ -1,4 +1,5 @@
-import Model.Edge;
+package View;
+
 import Model.Graph;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -8,8 +9,8 @@ public class GraphView {
 
     private Graph graph;
    // private List<Integer>[] nodeMat;
-    private List<NodeView> nodes;
-    private List<EdgeView> edges;
+    private NodeView[] nodes;
+    private Set<EdgeView> edges;
     private GraphicsContext gc;
 
     public GraphView(Graph graph,int start,GraphicsContext gc) {
@@ -17,8 +18,8 @@ public class GraphView {
         /*nodeMat=(List<Integer>[]) new ArrayList[graph.V()];
         for(int i=0;i<graph.V();i++)
             nodeMat[i]=new ArrayList<>();*/
-        nodes=new ArrayList<>();
-        edges=new ArrayList<>();
+        nodes=new NodeView[graph.V()];
+        edges=new HashSet<>();
         this.gc=gc;
         buildGraph(graph,start);
 
@@ -56,12 +57,12 @@ public class GraphView {
             secundaQ.clear();
         }
 
-        for(List<Integer> list:nodeMat){
+        /*for(List<Integer> list:nodeMat){
             //System.out.print(list.size()+": ");
             for(int w:list)
                 System.out.print(w+" ");
             System.out.println();
-        }
+        }*/
 
         buildGraphView(nodeMat,l);
     }
@@ -69,7 +70,7 @@ public class GraphView {
     private void buildGraphView(List<Integer>[] nodeMat,int maxLvl) {
         for(int i=0;i<nodeMat.length;i++){
             for(int j=0;j<nodeMat[i].size();j++){
-                nodes.add(new NodeView(gc,nodeMat[i].get(j).toString(),nodeMat[i].get(j),i,j,maxLvl,nodeMat[i].size()));
+                nodes[nodeMat[i].get(j)]=(new NodeView(gc,nodeMat[i].get(j).toString(),nodeMat[i].get(j),i,j,maxLvl,nodeMat[i].size()));
             }
         }
         for(EdgeView edge:edges){
@@ -86,6 +87,19 @@ public class GraphView {
     public void showEdges(){
         for(EdgeView edge:edges)
             edge.show();
+    }
+
+    public void showAll(){
+        showEdges();
+        showNodes();
+    }
+
+    public NodeView[] getNodes() {
+        return nodes;
+    }
+
+    public Set<EdgeView> getEdges() {
+        return edges;
     }
 
     private<Item> void deliteDuplicates(Queue<Item> list){

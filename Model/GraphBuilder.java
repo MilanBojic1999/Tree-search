@@ -1,5 +1,4 @@
-import Model.Edge;
-import Model.Graph;
+package Model;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,7 +1,9 @@
 package Model.Search;
 
+import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import View.NodeStates;
 
 import java.util.List;
 import java.util.Stack;
@@ -20,19 +22,21 @@ public class DepthFirstSearch extends Search{
 
     @Override
     public List<Edge> search(Graph g, int s, int e) {
-        boolean[] _marked=new boolean[graph.V()];
-        int[] _edgeTo=new int[graph.V()];
+        boolean[] _marked=new boolean[g.V()];
+        int[] _edgeTo=new int[g.V()];
         Stack<Integer> nodes=new Stack<>();
         nodes.push(s);
-
+        NodeControler.getInstance().setNodeState(s,NodeStates.CHECKING);
         while (!nodes.isEmpty() && !nodes.contains(e)){
 
             int v=nodes.pop();
+            NodeControler.getInstance().setNodeState(v,NodeStates.NEUTRAL);
             _marked[v]=true;
             for(Edge edge:g.adj(v)){
                 int w=edge.other(v);
                 if(!_marked[w]){
                     _edgeTo[w]=v;
+                    NodeControler.getInstance().setNodeState(w,NodeStates.CHECKING);
                     /*if(w==e)
                         return edgeTo(g,_edgeTo,s,e);*/
                     nodes.push(w);

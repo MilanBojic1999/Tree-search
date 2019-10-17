@@ -1,7 +1,9 @@
 package Model.Search;
 
+import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import View.NodeStates;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,12 +33,19 @@ public abstract class Search {
 
     protected List<Edge> edgeTo(Graph g,int[] edg,int s,int e){
         List<Edge> stack=new Stack<>();
-        for(int i=e;i!=s;i=edg[i])
-            stack.add(g.getEdge(i,edg[i]));
+        NodeControler nc=NodeControler.getInstance();
+        for(int i=e;i!=s;i=edg[i]) {
+            Edge edge=g.getEdge(edg[i],i);
+            stack.add(edge);
+            nc.setEgdeAsPath(edge);
+            nc.setNodeState(i, NodeStates.PATH);
+        }
+        nc.setNodeState(s,NodeStates.PATH);
 
         Collections.reverse(stack);
         return stack;
     }
+
 
     public List<Edge> edgeTo(int e){
         List<Edge> st=new ArrayList<>();
