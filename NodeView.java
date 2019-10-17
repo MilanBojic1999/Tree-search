@@ -16,7 +16,7 @@ public class NodeView {
     private double x;
     private double y;
 
-    public NodeView(GraphicsContext gc,String text, int num,int lvl,int coll,int maxColl) {
+    public NodeView(GraphicsContext gc,String text, int num,int lvl,int coll,int maxLvl,int maxColl) {
         this.text = text;
         this.num = num;
         state=NodeStates.NEUTRAL;
@@ -24,8 +24,10 @@ public class NodeView {
         this.lvl=lvl;
         this.coll=coll;
         this.maxColl=maxColl;
-        y=10+lvl*75;
-        x=gc.getCanvas().getWidth()/(maxColl+1)+maxColl*coll*20;
+        double size=gc.getCanvas().getHeight();
+        y=(size*(2*lvl+1))/(2*maxLvl)-25;
+        size=gc.getCanvas().getWidth();
+        x=(size*(2*coll+1))/(2*maxColl)-25;
     }
 
 
@@ -35,6 +37,10 @@ public class NodeView {
 
     public double getY() {
         return y;
+    }
+
+    public int getNum() {
+        return num;
     }
 
     public void setState(NodeStates state) {
