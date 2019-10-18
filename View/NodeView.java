@@ -48,6 +48,10 @@ public class NodeView {
         this.state = state;
     }
 
+    public boolean isPath(){
+        return state==NodeStates.PATH;
+    }
+
     @Override
     public int hashCode() {
         return text.hashCode();

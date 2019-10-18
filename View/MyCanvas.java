@@ -21,6 +21,10 @@ public class MyCanvas extends Canvas {
         return getGraphicsContext2D();
     }
 
+    /**
+     * postavlja graf koji će se pokazivati
+     * @param graphName ime grafa koji se prikazuje
+     */
     public void setGraph(String graphName){
         graph= GraphBuilder.Instance.buildGraph(graphName);
         gv=new GraphView(graph,0,getGraphicsContext());

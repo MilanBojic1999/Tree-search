@@ -28,7 +28,8 @@ public class BreadthFirstSearch extends Search {
         while (!queue.isEmpty() && !queue.contains(e)){
             int v=queue.poll();
             _marked[v]=true;
-            for(Edge edge:graph.adj(v)){
+            System.out.println(v);
+            for(Edge edge:g.adj(v)){
                 int w=edge.other(v);
                 if(!_marked[w]){
                     _edgeTo[w]=v;

@@ -13,7 +13,7 @@ public class NodeControler {
     private Set<EdgeView> edges;
 
     public NodeControler() {
-        MyCanvas canvas=App.getInstance().getStage().getCanvas();
+        MyCanvas canvas=MyStage.getInstance().getCanvas();
         nodes=canvas.getGraphView().getNodes();
         edges=canvas.getGraphView().getEdges();
     }
@@ -31,7 +31,7 @@ public class NodeControler {
 
     public void setEgdeAsPath(Edge egde){
         for(EdgeView edgeView:edges)
-            if(edgeView.hashCode()==egde.hashCode()){
+            if(edgeView.isEdge(egde)){
                 edgeView.setPath(true);
             }
     }

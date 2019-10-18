@@ -8,7 +8,11 @@ import java.io.IOException;
 public class GraphBuilder {
     public static final GraphBuilder Instance=new GraphBuilder();
 
-
+    /**
+     * iz fajla čita podatke, pravi novi graf pa ga vraća
+     * @param filename ime fajla
+     * @return vraća novi graf
+     */
 
     public Graph buildGraph(String filename){
         File file=new File("src"+File.separator+"Files"+File.separator+filename);

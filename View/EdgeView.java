@@ -1,5 +1,6 @@
 package View;
 
+import Model.Edge;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -11,26 +12,30 @@ public class EdgeView {
     private GraphicsContext gc;
     private int node1num;
     private int node2num;
+    private Edge edge;
 
-    public EdgeView(NodeView node1, NodeView node2, GraphicsContext gc) {
+    public EdgeView(NodeView node1, NodeView node2, GraphicsContext gc,Edge edge) {
         this.node1 = node1;
         this.node2 = node2;
         this.gc = gc;
         path=false;
+        this.edge=edge;
     }
 
-    public EdgeView(int node1num, int node2num,GraphicsContext gc) {
+    public EdgeView(int node1num, int node2num,GraphicsContext gc,Edge edge) {
         this.node1num = node1num;
         this.node2num = node2num;
         this.gc=gc;
         path=false;
+        this.edge=edge;
     }
-    
+
     /**
      * iz date liste čvorova pronalazi dva sd odgovarajućim brojem i stavlja ih kao
      * dva čvora koje povezuje
      * @param list lista čvorova(NodeView)
      */
+
     public void setNodes(NodeView[] list){
         for(NodeView node:list){
             if(node.getNum()==node1num)
@@ -57,10 +62,11 @@ public class EdgeView {
         return ((this.node1num==other.node1num) && (this.node2num==other.node2num) ||
                 (this.node1num==other.node2num) && (this.node2num==other.node1num));
     }
-    
+
     /**
      * @return vraća čvor
      */
+
     public NodeView getNode1() {
         return node1;
     }
@@ -68,7 +74,7 @@ public class EdgeView {
     public NodeView getNode2() {
         return node2;
     }
-    
+
     /**
      * @return da li je u pitanju put između dva čvora u grafu
      */
@@ -76,16 +82,15 @@ public class EdgeView {
     public boolean isPath() {
         return path;
     }
-    
+
     /**
      * postavlja da li je ivica zapravo put između dva čvora
      * @param path
      */
-
     public void setPath(boolean path) {
         this.path = path;
     }
-    
+
     /**
      * prikazuje ivicu na platnu između dva čvora (od centra jednog do centra drugog)
      */
@@ -97,6 +102,10 @@ public class EdgeView {
         }else {
             gc.setStroke(Color.BLACK);
         }
-        gc.strokeLine(node1.getX()+25,node1.getY()+50,node2.getX()+25,node2.getY());
+        gc.strokeLine(node1.getX()+25,node1.getY()+25,node2.getX()+25,node2.getY()+25);
+    }
+
+    public boolean isEdge(Edge edge1){
+        return edge.equals(edge1);
     }
 }

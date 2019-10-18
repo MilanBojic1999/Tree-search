@@ -28,10 +28,10 @@ public class DepthFirstSearch extends Search{
         nodes.push(s);
         NodeControler.getInstance().setNodeState(s,NodeStates.CHECKING);
         while (!nodes.isEmpty() && !nodes.contains(e)){
-
             int v=nodes.pop();
             NodeControler.getInstance().setNodeState(v,NodeStates.NEUTRAL);
             _marked[v]=true;
+            System.out.println(v);
             for(Edge edge:g.adj(v)){
                 int w=edge.other(v);
                 if(!_marked[w]){
@@ -56,6 +56,7 @@ public class DepthFirstSearch extends Search{
         while (!nodes.isEmpty()){
             int v=nodes.pop();
             marked[v]=true;
+
             for(Edge e:graph.adj(v)) {
                 int w = e.other(v);
                 if (!marked[w]) {

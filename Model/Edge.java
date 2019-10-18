@@ -12,25 +12,41 @@ public class Edge implements Comparable<Edge>{
         this.weight = weight;
     }
 
+    /**
+     * @return jedan čvor(Node)
+     */
     public int ether(){
         return v;
     }
 
-    public boolean edgeOf(int v,int w){
-        if(this.v==v && this.w==w)
-            return true;
-        if(this.w==v && this.v==w)
-            return true;
-
-        return false;
-    }
-
+    /**
+     * @param i je jedan čvor ivice(Node of the Edge)
+     * @return drugi čvor
+     */
     public int other(int i){
         if (i==v) return w;
         if(i==w) return v;
         return -1;
     }
 
+    /**
+     * metod proverava da li je za date
+     * čvorove ovo veza između njih
+     * @param v i w su čvorovi
+     * @return da li je ovo ivica između dva čvora
+     */
+
+    public boolean edgeOf(int v,int w){
+        if(this.v==v && this.w==w)
+            return true;
+        if(this.w==v && this.v==w)
+            return true;
+        return false;
+    }
+
+    /**
+     * @return dužinu čvora
+     */
     public double weight(){
         return weight;
     }
@@ -39,7 +55,6 @@ public class Edge implements Comparable<Edge>{
     public int hashCode() {
         final int prime=53;
         int hash=(v*10+w)*prime;
-
         return hash;
     }
 

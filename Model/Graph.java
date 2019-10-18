@@ -9,8 +9,8 @@ import View.*;
 public class Graph {
 
     private List<Edge>[] edges;
-    private int V;
-    private int E;
+    private int V; /** broj čvorova**/
+    private int E; /** broj ivica**/
 
     public Graph(int v) {
         V = v;
@@ -21,13 +21,23 @@ public class Graph {
         }
     }
 
+    /**
+     * @return broj čvorova
+     */
     public int V(){
         return V;
     }
 
+    /**
+     * @return broj ivica
+     */
     public int E(){
         return E;
     }
+
+    /**
+     * @param edge se dodaje na graf
+     */
 
     public void addEdge(Edge edge){
         int v=edge.ether();
@@ -39,9 +49,19 @@ public class Graph {
         E++;
     }
 
+    /**
+     * @param v je broj čvora(Node)
+     * @return ivice(Edge) koje polaze iz v čvora(Node)
+     */
     public List<Edge> adj(int v){
         return edges[v];
     }
+
+    /**
+     *
+     * @param v je broj čvora
+     * @return ostake čvorove koje su u direktnoj vezi sa v čvorom
+     */
 
     public List<Integer> nodesConnectedTo(int v){
         List<Integer> list=new ArrayList<>();
@@ -50,6 +70,10 @@ public class Graph {
         }
         return list;
     }
+
+    /**
+     * @return sve ivice(Edge) grafa
+     */
 
     public List<Edge> edges(){
         List<Edge> list=new ArrayList<>();
@@ -61,6 +85,12 @@ public class Graph {
         }
         return list;
     }
+
+    /**
+     *
+     * @param v i w su dva čvora
+     * @return ako posoji ivicu između dva čvora
+     */
 
     public Edge getEdge(int v,int w){
         for(Edge edge:edges()){

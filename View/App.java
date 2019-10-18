@@ -2,11 +2,13 @@ package View;
 
 import Model.Graph;
 import Model.GraphBuilder;
+import Model.Search.BreadthFirstSearch;
 import Model.Search.DepthFirstSearch;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -47,7 +49,7 @@ public class App extends Application {
 
         Timeline timeline=new Timeline();
         timeline.setCycleCount(15);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(200),tl -> getStage().getCanvas().getGraphView().showAll()));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(20),tl -> getStage().getCanvas().getGraphView().showAll()));
 
         timeline.play();
 
@@ -60,7 +62,12 @@ public class App extends Application {
         executor.submit(() -> {
             System.out.println(12);
             DepthFirstSearch.INSTANCE.search(getStage().getCanvas().getGraph(),0,10);
-            System.out.println(13);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    stage.getCanvas().getGraphView().showAll();
+                }
+            });
             executor.shutdown();
             timeline.stop();
         });
