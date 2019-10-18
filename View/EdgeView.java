@@ -25,7 +25,12 @@ public class EdgeView {
         this.gc=gc;
         path=false;
     }
-
+    
+    /**
+     * iz date liste čvorova pronalazi dva sd odgovarajućim brojem i stavlja ih kao
+     * dva čvora koje povezuje
+     * @param list lista čvorova(NodeView)
+     */
     public void setNodes(NodeView[] list){
         for(NodeView node:list){
             if(node.getNum()==node1num)
@@ -45,9 +50,17 @@ public class EdgeView {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if(this==obj) return true;
+        if(obj == null) return false;
+        if(!(obj instanceof EdgeView)) return false;
+        EdgeView other=(EdgeView) obj;
+        return ((this.node1num==other.node1num) && (this.node2num==other.node2num) ||
+                (this.node1num==other.node2num) && (this.node2num==other.node1num));
     }
-
+    
+    /**
+     * @return vraća čvor
+     */
     public NodeView getNode1() {
         return node1;
     }
@@ -55,14 +68,27 @@ public class EdgeView {
     public NodeView getNode2() {
         return node2;
     }
+    
+    /**
+     * @return da li je u pitanju put između dva čvora u grafu
+     */
 
     public boolean isPath() {
         return path;
     }
+    
+    /**
+     * postavlja da li je ivica zapravo put između dva čvora
+     * @param path
+     */
 
     public void setPath(boolean path) {
         this.path = path;
     }
+    
+    /**
+     * prikazuje ivicu na platnu između dva čvora (od centra jednog do centra drugog)
+     */
 
     public void show(){
         gc.setLineWidth(5);
