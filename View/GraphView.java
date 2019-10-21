@@ -165,11 +165,9 @@ public class GraphView {
      * @param <Item>
      */
 
-    private<Item> void deliteDuplicates(Queue<Item> list){
-        Set<Item> set=new HashSet<>(list);
+    private<Item> void deliteDuplicates(Queue<Item> list) {
+        Set<Item> set=new TreeSet<>(list);
         list.clear();
         list.addAll(set);
-        /*for(Item w:set)
-            System.err.print(w);*/
     }
 }

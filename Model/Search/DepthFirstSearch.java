@@ -25,21 +25,22 @@ public class DepthFirstSearch extends Search{
         boolean[] _marked=new boolean[g.V()];
         int[] _edgeTo=new int[g.V()];
         Stack<Integer> nodes=new Stack<>();
+        NodeControler controler=NodeControler.getInstance();
         nodes.push(s);
-        NodeControler.getInstance().setNodeState(s,NodeStates.CHECKING);
+        controler.setNodeState(s,NodeStates.CHECKING);
+        sleep(300);
         while (!nodes.isEmpty() && !nodes.contains(e)){
             int v=nodes.pop();
-            NodeControler.getInstance().setNodeState(v,NodeStates.NEUTRAL);
+            controler.setNodeState(v,NodeStates.CHECKED);
+            sleep(400);
             _marked[v]=true;
-            System.out.println(v);
             for(Edge edge:g.adj(v)){
                 int w=edge.other(v);
                 if(!_marked[w]){
                     _edgeTo[w]=v;
-                    NodeControler.getInstance().setNodeState(w,NodeStates.CHECKING);
-                    /*if(w==e)
-                        return edgeTo(g,_edgeTo,s,e);*/
+                    controler.setNodeState(w,NodeStates.CHECKING);
                     nodes.push(w);
+                    sleep(400);
                 }
             }
 

@@ -1,7 +1,9 @@
 package Model.Search;
 
+import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import View.NodeStates;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,18 +24,25 @@ public class BreadthFirstSearch extends Search {
     public List<Edge> search(Graph g, int s, int e) {
         boolean[] _marked=new boolean[g.V()];
         int[] _edgeTo=new int[g.V()];
+        NodeControler controler=NodeControler.getInstance();
+
 
         Queue<Integer> queue=new LinkedList<>();
         queue.add(s);
+        controler.setNodeState(s, NodeStates.CHECKING);
+        sleep(300);
         while (!queue.isEmpty() && !queue.contains(e)){
             int v=queue.poll();
+            controler.setNodeState(v,NodeStates.CHECKED);
             _marked[v]=true;
-            System.out.println(v);
+            sleep(400);
             for(Edge edge:g.adj(v)){
                 int w=edge.other(v);
                 if(!_marked[w]){
                     _edgeTo[w]=v;
                     queue.add(w);
+                    controler.setNodeState(w,NodeStates.CHECKING);
+                    sleep(400);
                 }
             }
         }

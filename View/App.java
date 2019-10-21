@@ -2,8 +2,10 @@ package View;
 
 import Model.Graph;
 import Model.GraphBuilder;
+import Model.Search.BidirectionalSearch;
 import Model.Search.BreadthFirstSearch;
 import Model.Search.DepthFirstSearch;
+import Model.Search.IterativeDeepeningDFS;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -48,9 +50,6 @@ public class App extends Application {
         stage=MyStage.getInstance();
         stage.show();
         stage.getCanvas().getGraphView().showAll();
-        //DepthFirstSearch.INSTANCE.search(stage.getCanvas().getGraph(), 0, 10);
-        
-        //stage.getCanvas().getGraphView().showPath();
 
         Timeline timeline=new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -65,7 +64,7 @@ public class App extends Application {
             executor.shutdown();
         });
         executor.submit(() -> {
-            DepthFirstSearch.INSTANCE.search(getStage().getCanvas().getGraph(),0,10);
+            BidirectionalSearch.INSTANCE.search(getStage().getCanvas().getGraph(),0,29);
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {

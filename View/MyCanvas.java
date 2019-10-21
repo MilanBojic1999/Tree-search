@@ -14,11 +14,11 @@ public class MyCanvas extends Canvas {
     public MyCanvas(double width, double height) {
         super(width, height);
         gc=getGraphicsContext2D();
-        setGraph("Graph1.txt");
+        setGraph("BinaryTree1.txt");
     }
 
     public GraphicsContext getGraphicsContext(){
-        return getGraphicsContext2D();
+        return gc;
     }
 
     /**

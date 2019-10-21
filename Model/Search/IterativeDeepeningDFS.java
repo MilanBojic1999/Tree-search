@@ -1,7 +1,9 @@
 package Model.Search;
 
+import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import View.NodeStates;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,9 +11,13 @@ import java.util.Queue;
 
 public class IterativeDeepeningDFS extends Search {
 
+    public final static IterativeDeepeningDFS INSTANCE=new IterativeDeepeningDFS();
 
     public IterativeDeepeningDFS(Graph graph, int s) {
         super(graph, s);
+    }
+
+    private IterativeDeepeningDFS() {
     }
 
     @Override
@@ -19,16 +25,22 @@ public class IterativeDeepeningDFS extends Search {
         boolean[] marked=new boolean[g.V()];
         int[] edgeTo=new int[g.V()];
         Queue<Integer> queue=new LinkedList<>();
+        NodeControler controler=NodeControler.getInstance();
         queue.add(s);
+        controler.setNodeState(s, NodeStates.CHECKING);
+        sleep(350);
         List<Edge> list;
         while (!queue.isEmpty() && !queue.contains(e)){
             int v=queue.poll();
             marked[v]=true;
+            controler.setNodeState(v, NodeStates.CHECKED);
+            sleep(400);
             for(Edge edge:g.adj(v)){
                 int w=edge.other(v);
                 if(!marked[w]){
                     edgeTo[w]=v;
                     list=_rDfs(g,queue,marked,edgeTo,w,s,e,1);
+                    sleep(400);
                     if(list!=null)
                         return list;
                 }
@@ -38,23 +50,26 @@ public class IterativeDeepeningDFS extends Search {
     }
 
     private List<Edge> _rDfs(Graph g,Queue<Integer> queue,boolean[] marked,int[] edgeTo,int v,int s,int e,int i){
-        if(i==5){
+        if(i==2){
             queue.add(v);
+            NodeControler.getInstance().setNodeState(v,NodeStates.CHECKING);
             return null;
         }
         marked[v]=true;
+        NodeControler.getInstance().setNodeState(v,NodeStates.CHECKED);
+        sleep(300);
         for(Edge edge:g.adj(v)){
             int w=edge.other(v);
             if(!marked[w]){
                 edgeTo[w]=v;
-                System.out.println(w);
+                NodeControler.getInstance().setNodeState(w,NodeStates.CHECKING);
+                sleep(300);
                 if(w==e)
                     return edgeTo(g,edgeTo,s,e);
                 else
                     return _rDfs(g,queue,marked,edgeTo,w,s,e,i+1);
             }
         }
-        System.out.println("opa");
         return null;
     }
 

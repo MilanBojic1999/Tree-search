@@ -5,7 +5,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
-public class NodeView {
+public class NodeView implements Comparable<NodeView>{
 
     private NodeStates state;
     private String text;
@@ -55,6 +55,11 @@ public class NodeView {
     @Override
     public int hashCode() {
         return text.hashCode();
+    }
+
+    @Override
+    public int compareTo(NodeView o) {
+        return this.num-o.num;
     }
 
     public void show(){

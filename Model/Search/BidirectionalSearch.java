@@ -1,49 +1,65 @@
 package Model.Search;
 
+import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import View.NodeStates;
 
 import java.util.*;
 
 public class BidirectionalSearch extends Search{
 
+    public static final BidirectionalSearch INSTANCE=new BidirectionalSearch();
 
     public BidirectionalSearch(Graph graph, int s) {
         super(graph, s);
     }
 
+    private BidirectionalSearch() {
+    }
+
     @Override
     public List<Edge> search(Graph g, int s, int e) {
-        boolean[] marked=new boolean[graph.V()];
-        int[] edgeToStart=new int[graph.V()];
-        int[] edgeToEnd=new int[graph.V()];
+        boolean[] _marked=new boolean[g.V()];
+        int[] edgeToStart=new int[g.V()];
+        int[] edgeToEnd=new int[g.V()];
         Queue<Integer> startQ=new LinkedList<>();
         Queue<Integer> endQ=new LinkedList<>();
+        NodeControler controler=NodeControler.getInstance();
+
         startQ.add(s);
         endQ.add(e);
+        controler.setNodeState(s, NodeStates.CHECKING);
+        controler.setNodeState(e,NodeStates.CHECKING);
+        sleep(350);
         int w,w1;
         while ((!startQ.isEmpty() && !endQ.isEmpty()) && Collections.disjoint(startQ,endQ)){
             int sv=startQ.poll();
             int ev=endQ.poll();
-
-            marked[sv]=true;
-            marked[ev]=true;
+            controler.setNodeState(sv, NodeStates.CHECKED);
+            controler.setNodeState(ev,NodeStates.CHECKED);
+            _marked[sv]=true;
+            _marked[ev]=true;
+            sleep(350);
 
             for(Edge ed1:g.adj(sv)){
                 w=ed1.other(sv);
-                if(!marked[w]){
+                if(!_marked[w]){
                     edgeToStart[w]=sv;
                     startQ.add(w);
+                    controler.setNodeState(w,NodeStates.CHECKING);
                 }
             }
 
             for(Edge ed2:g.adj(ev)){
                 w1=ed2.other(ev);
-                if(!marked[w1]){
+                if(!_marked[w1]){
                     edgeToEnd[w1]=ev;
                     endQ.add(w1);
+                    controler.setNodeState(w1,NodeStates.CHECKING);
                 }
             }
+            sleep(400);
         }
 
         startQ.retainAll(endQ);

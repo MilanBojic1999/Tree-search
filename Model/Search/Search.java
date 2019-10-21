@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
+ /**
  * Abstraktna klasa za pretragu
  */
 public abstract class Search {
@@ -62,9 +63,9 @@ public abstract class Search {
             stack.add(edge);
             nc.setEgdeAsPath(edge);
             nc.setNodeState(i, NodeStates.PATH);
+            sleep(300);
         }
         nc.setNodeState(s,NodeStates.PATH);
-
         Collections.reverse(stack);
         return stack;
     }
@@ -87,4 +88,13 @@ public abstract class Search {
      * @param s
      */
     protected abstract void walk(int s);
+
+
+    protected void sleep(long millis){
+        try {
+            Thread.sleep(millis);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
 }

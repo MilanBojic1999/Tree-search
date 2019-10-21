@@ -12,7 +12,7 @@ public class NodeControler {
     private NodeView[] nodes;
     private Set<EdgeView> edges;
 
-    public NodeControler() {
+    private NodeControler() {
         MyCanvas canvas=MyStage.getInstance().getCanvas();
         nodes=canvas.getGraphView().getNodes();
         edges=canvas.getGraphView().getEdges();
