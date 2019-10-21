@@ -46,10 +46,15 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         stage=MyStage.getInstance();
+        stage.show();
+        stage.getCanvas().getGraphView().showAll();
+        //DepthFirstSearch.INSTANCE.search(stage.getCanvas().getGraph(), 0, 10);
+        
+        //stage.getCanvas().getGraphView().showPath();
 
         Timeline timeline=new Timeline();
-        timeline.setCycleCount(15);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(20),tl -> getStage().getCanvas().getGraphView().showAll()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(2),tl -> getStage().getCanvas().getGraphView().showAll()));
 
         timeline.play();
 
@@ -60,7 +65,6 @@ public class App extends Application {
             executor.shutdown();
         });
         executor.submit(() -> {
-            System.out.println(12);
             DepthFirstSearch.INSTANCE.search(getStage().getCanvas().getGraph(),0,10);
             Platform.runLater(new Runnable() {
                 @Override
@@ -68,7 +72,7 @@ public class App extends Application {
                     stage.getCanvas().getGraphView().showAll();
                 }
             });
-            executor.shutdown();
+            //executor.shutdown();
             timeline.stop();
         });
 
