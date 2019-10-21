@@ -16,7 +16,6 @@ public class MyStage extends Stage {
     public static MyStage getInstance() {
         if(Instance==null)
             Instance=new MyStage();
-        Instance.show();
         return Instance;
     }
 
