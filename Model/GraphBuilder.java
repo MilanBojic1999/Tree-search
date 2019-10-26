@@ -14,23 +14,25 @@ public class GraphBuilder {
      * @return vraća novi graf
      */
 
-    public Graph buildGraph(String filename){
+    public SymbolGraph buildGraph(String filename){
         File file=new File("src"+File.separator+"Files"+File.separator+filename);
-        Graph graph=null;
+        SymbolGraph<Integer> graph=null;
         try(BufferedReader br=new BufferedReader(new FileReader(file))){
             int v=Integer.parseInt(br.readLine());
-            graph=new Graph(v);
+            graph=new SymbolGraph<>(v);
             String line=br.readLine();
             while (line!=null){
                 String[] info=line.split(" ");
                 int v1=Integer.parseInt(info[0]);
                 int v2=Integer.parseInt(info[1]);
                 double width=Double.parseDouble(info[2]);
-                graph.addEdge(new Edge(v1,v2,width));
+                graph.addEdge(v1,v2,width);
                 line=br.readLine();
             }
         }catch (IOException e){}
 
         return graph;
     }
+
+
 }
