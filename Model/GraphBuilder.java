@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class GraphBuilder {
     public static final GraphBuilder Instance=new GraphBuilder();
@@ -34,5 +37,44 @@ public class GraphBuilder {
         return graph;
     }
 
+    public static SymbolGraph<Stanje> buildGraphStanje(Stanje pocStanje,Stanje krajStanje){
+        SymbolGraph<Stanje> graph=new SymbolGraph(pocStanje);
+        Queue<Stanje> queue=new LinkedList<>();
+        queue.add(pocStanje);
+        while (!graph.contains(krajStanje) || !queue.isEmpty()){
+            Stanje tr=queue.poll();
+            assert tr != null;
+            for(Stanje nw:tr.generisiStanja()){
+                if(!graph.contains(nw)) {
+                    graph.addVertice(nw);
+                    queue.add(nw);
+                }
+                graph.addEdge(tr,nw,tr.compareTo(nw));
+            }
+        }
+
+        return graph;
+    }
+
+
+   /* static SymbolGraph<Stanje> buildGraphStanje(Stanje pocStanje, List<Stanje> krajStanje){
+        SymbolGraph<Stanje> graph=new SymbolGraph<>(pocStanje);
+        Queue<Stanje> queue=new LinkedList<>();
+        queue.add(pocStanje);
+        while (!graph.containsAny(krajStanje) && !queue.isEmpty()){
+            Stanje tr=queue.poll();
+            assert tr != null;
+            for(Stanje nw:tr.generisiStanje()){
+                if(!graph.contains(nw)) {
+                    graph.addNode(nw);
+                    queue.add(nw);
+                    graph.addEdge(tr,nw);
+                }
+
+            }
+        }
+
+        return graph;
+    }*/
 
 }
