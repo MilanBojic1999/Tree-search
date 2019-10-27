@@ -3,6 +3,7 @@ package Model.Search;
 import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import Model.SymbolGraph;
 import View.NodeStates;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public abstract class Search {
      * @param e ciljini čvor
      * @return put između s i e čvora
      */
-    public abstract List<Edge> search(Graph g, int s, int e);
+    public abstract List<Edge> search(SymbolGraph g, int s, int e);
 
     /**
      * @param e čvor

@@ -3,6 +3,7 @@ package Model.Search;
 import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import Model.SymbolGraph;
 import View.NodeStates;
 
 import java.util.Collections;
@@ -22,7 +23,7 @@ public class DepthFirstSearch extends Search{
     }
 
     @Override
-    public List<Edge> search(Graph g, int s, int e) {
+    public List<Edge> search(SymbolGraph g, int s, int e) {
         boolean[] _marked=new boolean[g.V()];
         int[] _edgeTo=new int[g.V()];
         Stack<Integer> nodes=new Stack<>();

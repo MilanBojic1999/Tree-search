@@ -3,6 +3,7 @@ package Model.Search;
 import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import Model.SymbolGraph;
 import View.NodeStates;
 
 import java.util.LinkedList;
@@ -21,7 +22,7 @@ public class IterativeDeepeningDFS extends Search {
     }
 
     @Override
-    public List<Edge> search(Graph g, int s, int e) {
+    public List<Edge> search(SymbolGraph g, int s, int e) {
         boolean[] marked=new boolean[g.V()];
         int[] edgeTo=new int[g.V()];
         Queue<Integer> queue=new LinkedList<>();

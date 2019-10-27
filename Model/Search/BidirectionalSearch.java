@@ -3,6 +3,7 @@ package Model.Search;
 import Contorler.NodeControler;
 import Model.Edge;
 import Model.Graph;
+import Model.SymbolGraph;
 import View.NodeStates;
 
 import java.util.*;
@@ -19,7 +20,7 @@ public class BidirectionalSearch extends Search{
     }
 
     @Override
-    public List<Edge> search(Graph g, int s, int e) {
+    public List<Edge> search(SymbolGraph g, int s, int e) {
         boolean[] _marked=new boolean[g.V()];
         int[] edgeToStart=new int[g.V()];
         int[] edgeToEnd=new int[g.V()];
