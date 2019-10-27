@@ -2,20 +2,33 @@ package View;
 
 import Model.Graph;
 import Model.GraphBuilder;
+import Model.Stanja.Stanje;
+import Model.Stanja.ThreeDices;
+import Model.SymbolGraph;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyCanvas extends Canvas {
 
     private GraphView gv;
     private GraphicsContext gc;
-    private Graph graph;
+    private SymbolGraph graph;
 
     public MyCanvas(double width, double height) {
         super(width, height);
         gc=getGraphicsContext2D();
-        setGraph("BinaryTree1.txt");
+        setGraph("Graph1");
+        /*List<Stanje> kraj=new ArrayList<>();
+        for(int i=1;i<7;i++){
+            kraj.add(new ThreeDices(i,i,i));
+        }
+        setGraph(GraphBuilder.buildGraphStanje(new ThreeDices(1,1,1),new ThreeDices(4,4,4)));*/
     }
+
 
     public GraphicsContext getGraphicsContext(){
         return gc;
@@ -26,12 +39,21 @@ public class MyCanvas extends Canvas {
      * @param graphName ime grafa koji se prikazuje
      */
     public void setGraph(String graphName){
+        getGraphicsContext().clearRect(0,0,getWidth(),getHeight());
         graph= GraphBuilder.Instance.buildGraph(graphName);
         gv=new GraphView(graph,0,getGraphicsContext());
         gv.showAll();
     }
 
-    public Graph getGraph() {
+    public void setGraph(SymbolGraph graph){
+        getGraphicsContext().clearRect(0,0,getWidth(),getHeight());
+        this.graph=graph;
+        System.out.println(graph.getItem(0));
+        gv=new GraphView(graph,0,getGraphicsContext());
+        gv.showAll();
+    }
+
+    public SymbolGraph getGraph() {
         return graph;
     }
 
