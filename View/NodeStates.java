@@ -10,7 +10,8 @@ import javafx.scene.paint.Color;
  */
 public enum NodeStates {
     NEUTRAL(Color.LIGHTGRAY,Color.BLACK),PATH(Color.LIMEGREEN,Color.DARKGREEN),
-    CHECKING(Color.LIGHTBLUE,Color.DARKBLUE),CHECKED(Color.BLACK,Color.LIGHTGRAY);
+    CHECKING(Color.LIGHTBLUE,Color.DARKBLUE),CHECKED(Color.BLACK,Color.LIGHTGRAY),
+    TEST(Color.ROSYBROWN,Color.BLUEVIOLET);
 
     Color primeColor;
     Color secundColor;

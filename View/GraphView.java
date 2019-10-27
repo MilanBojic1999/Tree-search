@@ -1,13 +1,15 @@
 package View;
 
+import Model.Edge;
 import Model.Graph;
+import Model.SymbolGraph;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.*;
 
 public class GraphView {
 
-    private Graph graph;
+    private SymbolGraph graph;
    // private List<Integer>[] nodeMat;
     private NodeView[] nodes;
     private Set<EdgeView> edges;
@@ -20,12 +22,12 @@ public class GraphView {
      * @param gc graphicContext Canvasa
      */
 
-    public GraphView(Graph graph,int start,GraphicsContext gc) {
+    public GraphView(SymbolGraph graph,int start,GraphicsContext gc) {
         this.graph = graph;
         /*nodeMat=(List<Integer>[]) new ArrayList[graph.V()];
         for(int i=0;i<graph.V();i++)
             nodeMat[i]=new ArrayList<>();*/
-        nodes=new NodeView[graph.V()];
+        nodes=new NodeView[graph.N()];
         edges=new HashSet<>();
         this.gc=gc;
         buildGraph(graph,start);
@@ -38,20 +40,21 @@ public class GraphView {
      * @param s "koren" čvora
      */
 
-    private void buildGraph(Graph g,int s){
-        List<Integer>[] nodeMat=(List<Integer>[]) new ArrayList[graph.V()];
-        for(int i=0;i<graph.V();i++)
+    private void buildGraph(SymbolGraph g, int s){
+        System.out.println();
+        List<Integer>[] nodeMat=(List<Integer>[]) new ArrayList[graph.N()];
+        for(int i=0;i<graph.N();i++)
             nodeMat[i]=new ArrayList<>();
 
         Queue<Integer> primeQ=new LinkedList<>();
         Queue<Integer> secundaQ=new LinkedList<>();
         primeQ.add(s);
 
-        Boolean[] marked=new Boolean[g.V()];
+        Boolean[] marked=new Boolean[g.N()];
         int l=0;
 
         Arrays.fill(marked,Boolean.FALSE);
-        System.out.println(Arrays.asList(marked).contains(Boolean.FALSE));
+        System.out.println(Arrays.asList(marked).contains(Boolean.FALSE)+"!!");
         while (Arrays.asList(marked).contains(Boolean.FALSE)){
             nodeMat[l++].addAll(primeQ);
             for(int t:primeQ)
@@ -92,7 +95,7 @@ public class GraphView {
     private void buildGraphView(List<Integer>[] nodeMat,int maxLvl) {
         for(int i=0;i<nodeMat.length;i++){
             for(int j=0;j<nodeMat[i].size();j++){
-                nodes[nodeMat[i].get(j)]=(new NodeView(gc,nodeMat[i].get(j).toString(),nodeMat[i].get(j),i,j,maxLvl,nodeMat[i].size()));
+                nodes[nodeMat[i].get(j)]=(new NodeView(gc,graph.getItem(nodeMat[i].get(j)).toString(),nodeMat[i].get(j),i,j,maxLvl,nodeMat[i].size()));
             }
         }
         for(EdgeView edge:edges){
@@ -136,6 +139,13 @@ public class GraphView {
     public void showAll(){
         showEdges();
         showNodes();
+    }
+
+    public void restartGraph(){
+        for(NodeView nodeView:nodes)
+            nodeView.setState(NodeStates.NEUTRAL);
+        for(EdgeView edge:edges)
+            edge.setPath(false);
     }
 
     /**

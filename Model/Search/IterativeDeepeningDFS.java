@@ -28,49 +28,62 @@ public class IterativeDeepeningDFS extends Search {
         NodeControler controler=NodeControler.getInstance();
         queue.add(s);
         controler.setNodeState(s, NodeStates.CHECKING);
-        sleep(350);
+        sleep(500);
         List<Edge> list;
         while (!queue.isEmpty() && !queue.contains(e)){
             int v=queue.poll();
             marked[v]=true;
             controler.setNodeState(v, NodeStates.CHECKED);
-            sleep(400);
+            sleep(500);
+            for(Edge edge:g.adj(v)) {
+                int w = edge.other(v);
+                if(!marked[w]) {
+                    queue.add(w);
+                    controler.setNodeState(w,NodeStates.CHECKING);
+                    edgeTo[w]=v;
+                    if(w==e)
+                        return edgeTo(g,edgeTo,s,e);
+                }
+            }
+
             for(Edge edge:g.adj(v)){
                 int w=edge.other(v);
                 if(!marked[w]){
-                    edgeTo[w]=v;
-                    list=_rDfs(g,queue,marked,edgeTo,w,s,e,1);
-                    sleep(400);
-                    if(list!=null)
-                        return list;
+                    queue.add(_rDfs(g,queue,marked,edgeTo,w,s,e,1));
+                    sleep(500);
+//                    if(list!=null)
+//                        return list;
                 }
             }
         }
         return edgeTo(g,edgeTo,s,e);
     }
 
-    private List<Edge> _rDfs(Graph g,Queue<Integer> queue,boolean[] marked,int[] edgeTo,int v,int s,int e,int i){
-        if(i==2){
-            queue.add(v);
-            NodeControler.getInstance().setNodeState(v,NodeStates.CHECKING);
-            return null;
+    private int _rDfs(Graph g,Queue<Integer> queue,boolean[] marked,int[] edgeTo,int v,int s,int e,int i){
+        if(i==4){
+            marked[v]=true;
+            NodeControler.getInstance().setNodeState(v,NodeStates.TEST);
+            sleep(400);
+            return v;
         }
         marked[v]=true;
         NodeControler.getInstance().setNodeState(v,NodeStates.CHECKED);
-        sleep(300);
+        sleep(500);
         for(Edge edge:g.adj(v)){
             int w=edge.other(v);
             if(!marked[w]){
                 edgeTo[w]=v;
                 NodeControler.getInstance().setNodeState(w,NodeStates.CHECKING);
-                sleep(300);
-                if(w==e)
-                    return edgeTo(g,edgeTo,s,e);
+                sleep(500);
+                if(w==e) {
+                    edgeTo[w]=v;
+                    return w;
+                }
                 else
                     return _rDfs(g,queue,marked,edgeTo,w,s,e,i+1);
             }
         }
-        return null;
+        return v;
     }
 
     @Override

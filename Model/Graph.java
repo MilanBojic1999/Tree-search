@@ -14,7 +14,7 @@ public class Graph {
 
     public Graph(int v) {
         V = v;
-        E=0;
+        E = 0;
         edges=(List<Edge>[]) new List[V];
         for(int i=0;i<V;i++){
             edges[i]=new ArrayList<>();
@@ -47,6 +47,14 @@ public class Graph {
         edges[v].add(edge);
         edges[w].add(edge);
         E++;
+    }
+
+    protected boolean hasEdgeToVertace(int w){
+        for(Edge edge:edges[w]){
+            if(edge.isEdgeTo(w))
+                return true;
+        }
+        return false;
     }
 
     /**

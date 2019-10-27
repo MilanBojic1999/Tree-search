@@ -44,6 +44,12 @@ public class Edge implements Comparable<Edge>{
         return false;
     }
 
+    public boolean isEdgeTo(int v){
+        if(w==v)
+            return true;
+        return false;
+    }
+
     /**
      * @return dužinu čvora
      */

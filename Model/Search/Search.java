@@ -77,9 +77,10 @@ public abstract class Search {
      */
     public List<Edge> edgeTo(int e){
         List<Edge> st=new ArrayList<>();
-        for(int i=e;edgeTo[i]>0;i=edgeTo[i])
+        for(int i=e;i>0;i=edgeTo[i])
             st.add(graph.getEdge(i,edgeTo[i]));
 
+        Collections.reverse(st);
         return st;
     }
 
@@ -96,5 +97,11 @@ public abstract class Search {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
+    }
+
+    protected void printOfList(Iterable iterable){
+        for(Object obj:iterable)
+            System.out.print(obj+" ");
+        System.out.println();
     }
 }

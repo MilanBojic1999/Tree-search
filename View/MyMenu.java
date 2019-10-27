@@ -1,15 +1,18 @@
 package View;
 
+import Contorler.GraphControler;
+import Contorler.SearchControler;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyMenu extends MenuBar {
     private static MyMenu Instance;
-
 
     private MyMenu() {
         Menu graphItem=new Menu("Graphs");
@@ -37,6 +40,11 @@ public class MyMenu extends MenuBar {
         list.add(new MenuItem("Graph1"));
         list.add(new MenuItem("Graph2"));
         list.add(new MenuItem("Graph3"));
+        list.add(new MenuItem("BinaryTree1"));
+        list.add(new MenuItem("Stanja1"));
+        for(MenuItem item:list) {
+            item.addEventHandler(ActionEvent.ANY, new GraphControler(item.getText()));
+        }
         return list;
     }
 
@@ -46,6 +54,8 @@ public class MyMenu extends MenuBar {
         list.add(new MenuItem("BreadthFirstSearch"));
         list.add(new MenuItem("BidirectionalSearch"));
         list.add(new MenuItem("IterativeDeepeningDFS"));
+        for(MenuItem item:list)
+            item.addEventHandler(ActionEvent.ANY,new SearchControler(item.getText()));
 
         return list;
     }

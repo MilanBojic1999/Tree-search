@@ -5,6 +5,7 @@ import Model.Edge;
 import Model.Graph;
 import View.NodeStates;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -34,7 +35,9 @@ public class DepthFirstSearch extends Search{
             controler.setNodeState(v,NodeStates.CHECKED);
             sleep(400);
             _marked[v]=true;
-            for(Edge edge:g.adj(v)){
+            List<Edge> list=g.adj(v);
+            Collections.reverse(list);
+            for(Edge edge:list){
                 int w=edge.other(v);
                 if(!_marked[w]){
                     _edgeTo[w]=v;

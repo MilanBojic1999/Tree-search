@@ -20,6 +20,7 @@ public class MyStage extends Stage {
     }
 
     private MyStage() {
+        Instance=this;
         Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
         double width=d.width*0.90;
         double height=d.height*0.90;
@@ -35,6 +36,8 @@ public class MyStage extends Stage {
 
         scene=new Scene(pane,width,height+10);
         setScene(scene);
+
+        setOnCloseRequest(event -> System.exit(10));
     }
 
     public MyCanvas getCanvas() {

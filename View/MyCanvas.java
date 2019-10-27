@@ -40,7 +40,7 @@ public class MyCanvas extends Canvas {
      */
     public void setGraph(String graphName){
         getGraphicsContext().clearRect(0,0,getWidth(),getHeight());
-        graph= GraphBuilder.Instance.buildGraph(graphName);
+        graph= GraphBuilder.buildGraph(graphName);
         gv=new GraphView(graph,0,getGraphicsContext());
         gv.showAll();
     }

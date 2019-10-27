@@ -38,6 +38,8 @@ public class EdgeView {
 
     public void setNodes(NodeView[] list){
         for(NodeView node:list){
+            if(node==null)
+                continue;
             if(node.getNum()==node1num)
                 node1=node;
             else if(node.getNum()==node2num)
