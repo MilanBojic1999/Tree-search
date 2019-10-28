@@ -1,9 +1,6 @@
 package Contorler;
 
-import Model.Search.BidirectionalSearch;
-import Model.Search.BreadthFirstSearch;
-import Model.Search.DepthFirstSearch;
-import Model.Search.IterativeDeepeningDFS;
+import Model.Search.*;
 import Model.SymbolGraph;
 import View.App;
 import View.MyCanvas;
@@ -45,7 +42,12 @@ public class SearchControler implements EventHandler<ActionEvent> {
             case "IterativeDeepeningDFS":
                 app.work(IterativeDeepeningDFS.INSTANCE);
                 break;
-
+            case "HillClimbingSearch":
+                app.work(HillClimbingSearch.INSTANCE);
+                break;
+            case "BestFirstSearch":
+                app.work(BestFirstSearch.INSTANCE);
+                break;
             default:System.err.println("No no");
         }
     }
