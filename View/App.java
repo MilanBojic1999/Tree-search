@@ -22,6 +22,7 @@ import java.awt.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class App extends Application {
@@ -72,7 +73,19 @@ public class App extends Application {
             SymbolGraph graph=getStage().getCanvas().getGraph();
             search.search(graph,0,end);
             Platform.runLater(() -> stage.getCanvas().getGraphView().showAll());
-            timeline.stop();
+            try{
+                executor.shutdown();
+                executor.awaitTermination(500, TimeUnit.MILLISECONDS);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }finally {
+                if(!executor.isTerminated()){
+                    executor.shutdownNow();
+                    System.out.println("Bye bye");
+                }
+                timeline.stop();
+            }
+            System.out.println(executor.isTerminated());
         });
     }
 
