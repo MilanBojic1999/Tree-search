@@ -54,6 +54,8 @@ public class MyMenu extends MenuBar {
         list.add(new MenuItem("BreadthFirstSearch"));
         list.add(new MenuItem("BidirectionalSearch"));
         list.add(new MenuItem("IterativeDeepeningDFS"));
+        list.add(new MenuItem("HillClimbingSearch"));
+        list.add(new MenuItem("BestFirstSearch"));
         for(MenuItem item:list)
             item.addEventHandler(ActionEvent.ANY,new SearchControler(item.getText()));
 
