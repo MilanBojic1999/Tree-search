@@ -11,9 +11,10 @@ public class NodeControler {
     private static NodeControler Instance;
     private NodeView[] nodes;
     private Set<EdgeView> edges;
+    private MyCanvas canvas;
 
     private NodeControler() {
-        MyCanvas canvas=MyStage.getInstance().getCanvas();
+        canvas=MyStage.getInstance().getCanvas();
         nodes=canvas.getGraphView().getNodes();
         edges=canvas.getGraphView().getEdges();
     }
@@ -22,6 +23,8 @@ public class NodeControler {
     public static NodeControler getInstance() {
         if(Instance==null)
             Instance=new NodeControler();
+        Instance.nodes=Instance.canvas.getGraphView().getNodes();
+        Instance.edges=Instance.canvas.getGraphView().getEdges();
         return Instance;
     }
 
