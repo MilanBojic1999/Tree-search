@@ -9,9 +9,9 @@ import javafx.scene.paint.Color;
  * CHEKING-čvor se trenutno proverava u pretrazi
  */
 public enum NodeStates {
-    NEUTRAL(Color.LIGHTGRAY,Color.BLACK),PATH(Color.LIMEGREEN,Color.DARKGREEN),
-    CHECKING(Color.LIGHTBLUE,Color.DARKBLUE),CHECKED(Color.BLACK,Color.LIGHTGRAY),
-    TEST(Color.ROSYBROWN,Color.BLUEVIOLET);
+    NEUTRAL(Color.rgb(255,100,10),Color.BLACK),PATH(Color.WHITE,Color.DARKRED),
+    CHECKING(Color.rgb(150,0,215),Color.rgb(255,100,255)),CHECKED(Color.rgb(90,90,90),Color.BLACK),
+    TEST(Color.GREEN,Color.GRAY);
 
     Color primeColor;
     Color secundColor;

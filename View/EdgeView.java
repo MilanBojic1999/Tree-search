@@ -98,9 +98,9 @@ public class EdgeView {
      */
 
     public void show(){
-        gc.setLineWidth(5);
+        gc.setLineWidth(8);
         if(path){
-            gc.setStroke(Color.GREEN);
+            gc.setStroke(Color.DARKRED);
         }else {
             gc.setStroke(Color.BLACK);
         }

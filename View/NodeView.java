@@ -63,7 +63,7 @@ public class NodeView implements Comparable<NodeView>{
     }
 
     public void show(){
-        gc.setLineWidth(3);
+        gc.setLineWidth(6);
         gc.setFill(state.primeColor);
         gc.setStroke(state.secundColor);
         gc.fillOval(x,y,50,50);
