@@ -44,7 +44,6 @@ public class App extends Application {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(2),tl -> stage.getCanvas().getGraphView().showAll()));
 
-        System.err.println(System.currentTimeMillis());
     }
 
     public static App getInstance() {
@@ -81,11 +80,9 @@ public class App extends Application {
             }finally {
                 if(!executor.isTerminated()){
                     executor.shutdownNow();
-                    System.out.println("Bye bye");
                 }
                 timeline.stop();
             }
-            System.out.println(executor.isTerminated());
         });
     }
 

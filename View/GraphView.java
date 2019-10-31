@@ -41,7 +41,6 @@ public class GraphView {
      */
 
     private void buildGraph(SymbolGraph g, int s){
-        System.out.println();
         List<Integer>[] nodeMat=(List<Integer>[]) new ArrayList[graph.N()];
         for(int i=0;i<graph.N();i++)
             nodeMat[i]=new ArrayList<>();
@@ -54,7 +53,6 @@ public class GraphView {
         int l=0;
 
         Arrays.fill(marked,Boolean.FALSE);
-        System.out.println(Arrays.asList(marked).contains(Boolean.FALSE)+"!!");
         while (Arrays.asList(marked).contains(Boolean.FALSE)){
             nodeMat[l++].addAll(primeQ);
             for(int t:primeQ)
@@ -76,12 +74,7 @@ public class GraphView {
             secundaQ.clear();
         }
 
-        /*for(List<Integer> list:nodeMat){
-            //System.out.print(list.size()+": ");
-            for(int w:list)
-                System.out.print(w+" ");
-            System.out.println();
-        }*/
+
 
         buildGraphView(nodeMat,l);
     }

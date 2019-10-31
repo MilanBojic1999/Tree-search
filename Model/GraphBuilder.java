@@ -45,7 +45,7 @@ public class GraphBuilder {
      * @return novi Simbol Graf
      */
 
-    public static SymbolGraph<Stanje> buildGraphStanje(Stanje pocStanje, Stanje krajStanje){
+    public static SymbolGraph<Stanje> buildGraphStanje(Stanje pocStanje, Stanje krajStanje,int dozGreske){
         SymbolGraph<Stanje> graph=new SymbolGraph(pocStanje);
         Queue<Stanje> queue=new LinkedList<>();
         queue.add(pocStanje);
@@ -54,11 +54,11 @@ public class GraphBuilder {
             assert tr != null;
             for(Stanje nw:tr.generisiStanja()){
                 if(!graph.contains(nw)) {
-                    if(nw.compareTo(krajStanje)<tr.compareTo(krajStanje)+1) {
+                    if(nw.compareTo(krajStanje)<tr.compareTo(krajStanje)+dozGreske) {
                         graph.addVertice(nw);
                         queue.add(nw);
                         if(!graph.hasEdgeToVertace(graph.getIndex(nw)))
-                            graph.addEdge(tr,nw,tr.compareTo(nw));
+                            graph.addEdge(tr,nw,tr.compareTo(nw)/10.0);
                     }
                 }
             }
