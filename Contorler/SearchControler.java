@@ -48,6 +48,9 @@ public class SearchControler implements EventHandler<ActionEvent> {
             case "BestFirstSearch":
                 app.work(BestFirstSearch.INSTANCE);
                 break;
+            case "A* Search":
+                app.work(AStarSearch.INSTANCE);
+                break;
             default:System.err.println("No no");
         }
     }

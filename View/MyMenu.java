@@ -42,6 +42,7 @@ public class MyMenu extends MenuBar {
         list.add(new MenuItem("Graph3"));
         list.add(new MenuItem("BinaryTree1"));
         list.add(new MenuItem("Stanja1"));
+        list.add(new MenuItem("Stanja2"));
         for(MenuItem item:list) {
             item.addEventHandler(ActionEvent.ANY, new GraphControler(item.getText()));
         }
@@ -56,6 +57,7 @@ public class MyMenu extends MenuBar {
         list.add(new MenuItem("IterativeDeepeningDFS"));
         list.add(new MenuItem("HillClimbingSearch"));
         list.add(new MenuItem("BestFirstSearch"));
+        list.add(new MenuItem("A* Search"));
         for(MenuItem item:list)
             item.addEventHandler(ActionEvent.ANY,new SearchControler(item.getText()));
 
