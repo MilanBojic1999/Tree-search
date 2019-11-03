@@ -1,4 +1,4 @@
-package View;
+﻿package View;
 
 import Model.Graph;
 import Model.GraphBuilder;
@@ -48,9 +48,9 @@ public class MyCanvas extends Canvas {
     }
 
     public void setGraph(SymbolGraph graph){
-        //getGraphicsContext().clearRect(0,0,getWidth(),getHeight());
-        gc.setFill(color);
-        gc.fillRect(0,0,getWidth(),getHeight());
+        getGraphicsContext().clearRect(0,0,getWidth(),getHeight());
+        /*gc.setFill(color);
+        gc.fillRect(0,0,getWidth(),getHeight());*/
         this.graph=graph;
         System.out.println(graph.getItem(0));
         gv=new GraphView(graph,0,getGraphicsContext());
