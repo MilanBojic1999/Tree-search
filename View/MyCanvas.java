@@ -23,14 +23,10 @@ public class MyCanvas extends Canvas {
         gc=getGraphicsContext2D();
         setGraph("Graph1");
 
-        color=Color.rgb(255,100,10);
+        /*color=Color.rgb(255,100,10);
         gc.setFill(color);
-        gc.fillRect(0,0,getWidth(),getHeight());
-        /*List<Stanje> kraj=new ArrayList<>();
-        for(int i=1;i<7;i++){
-            kraj.add(new ThreeDices(i,i,i));
-        }
-        setGraph(GraphBuilder.buildGraphStanje(new ThreeDices(1,1,1),new ThreeDices(4,4,4)));*/
+        gc.fillRect(0,0,getWidth(),getHeight());*/
+
     }
 
 
@@ -43,9 +39,9 @@ public class MyCanvas extends Canvas {
      * @param graphName ime grafa koji se prikazuje
      */
     public void setGraph(String graphName){
-        //getGraphicsContext().clearRect(0,0,getWidth(),getHeight());
-        gc.setFill(color);
-        gc.fillRect(0,0,getWidth(),getHeight());
+        getGraphicsContext().clearRect(0,0,getWidth(),getHeight());
+        /*gc.setFill(color);
+        gc.fillRect(0,0,getWidth(),getHeight());*/
         graph= GraphBuilder.buildGraph(graphName);
         gv=new GraphView(graph,0,getGraphicsContext());
         gv.showAll();
