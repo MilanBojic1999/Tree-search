@@ -22,9 +22,7 @@ public class MyMenu extends MenuBar {
         Menu serchMenu=new Menu("Searches");
         serchMenu.getItems().addAll(getSearchs());
         this.getMenus().add(serchMenu);
-
-        Menu work=new Menu("Work");
-        this.getMenus().add(work);
+        
 
         this.setVisible(true);
     }
@@ -43,6 +41,8 @@ public class MyMenu extends MenuBar {
         list.add(new MenuItem("BinaryTree1"));
         list.add(new MenuItem("Stanja1"));
         list.add(new MenuItem("Stanja2"));
+        list.add(new MenuItem("Stanja3"));
+        list.add(new MenuItem("Stanja4"));
         for(MenuItem item:list) {
             item.addEventHandler(ActionEvent.ANY, new GraphControler(item.getText()));
         }

@@ -22,8 +22,8 @@ public class MyStage extends Stage {
     private MyStage() {
         Instance=this;
         Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        double width=d.width*0.90;
-        double height=d.height*0.90;
+        double width=d.width;
+        double height=d.height;
 
         canvas=new MyCanvas(width,height);
         Group group=new Group();
@@ -33,9 +33,11 @@ public class MyStage extends Stage {
 
         VBox pane=new VBox();
         pane.getChildren().addAll(menu,group);
-
+        this.setFullScreen(true);
         scene=new Scene(pane,width,height+10);
         setScene(scene);
+
+        //this.setFullScreen(true);
 
         setOnCloseRequest(event -> System.exit(10));
     }
