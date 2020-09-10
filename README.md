@@ -14,9 +14,9 @@ Number of graphs is defined:
   
 Implemented search algorithms:
 
-    -DepthFirstSearch
+    -Depth First Search
   
-    -Breadth FirstSearch
+    -Breadth First Search
   
     -IterableDeepening Search
   
